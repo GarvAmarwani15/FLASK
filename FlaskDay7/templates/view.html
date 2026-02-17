@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Posts</title>
+</head>
+<body>
+
+<h2>All Posts</h2>
+
+{% for post in posts %}
+    <p>{{ post }}</p>
+{% endfor %}
+
+<br>
+<a href="/">Home</a>
+
+</body>
+</html>
