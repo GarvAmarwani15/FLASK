@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<div class="container">
+    <h1>Inventory Dashboard</h1>
+
+    <!-- Add product -->
+    <div class="card">
+        <input id="name" placeholder="Product name" required>
+        <input id="qty" type="number" placeholder="Qty" required>
+        <input id="price" type="number" placeholder="Price" required>
+
+        <button onclick="addProduct()">Add</button>
+    </div>
+
+    <!-- Search -->
+    <input id="search" placeholder="Search product..." onkeyup="loadProducts()">
+
+    <table id="table">
+        <tr>
+            <th>Name</th><th>Qty</th><th>Price</th><th>Stock</th><th>Delete</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+async function loadProducts(){
+    let search = document.getElementById("search").value;
+    let res = await fetch("/api/products?search="+search);
+    let products = await res.json();
+
+    let table = document.getElementById("table");
+    table.innerHTML = `
+        <tr>
+        <th>Name</th><th>Qty</th><th>Price</th><th>Stock</th><th>Delete</th>
+        </tr>`;
+
+    products.forEach(p=>{
+        table.innerHTML += `
+        <tr>
+            <td>${p.name}</td>
+            <td>${p.qty}</td>
+            <td>₹${p.price}</td>
+            <td>
+                <input id="c${p.id}" type="number" placeholder="+/-">
+                <button onclick="updateQty(${p.id})">Update</button>
+            </td>
+            <td><button onclick="deleteProduct(${p.id})">X</button></td>
+        </tr>`;
+    });
+}
+
+async function addProduct(){
+    let nameVal = document.getElementById("name").value;
+    let qtyVal = document.getElementById("qty").value;
+    let priceVal = document.getElementById("price").value;
+
+    if(!nameVal || !qtyVal || !priceVal){
+        alert("Fill all fields");
+        return;
+    }
+
+    await fetch("/api/products",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            name: nameVal,
+            qty: Number(qtyVal),
+            price: Number(priceVal)
+        })
+    });
+
+    loadProducts();
+}
+
+
+async function updateQty(id){
+    let change = document.getElementById("c"+id).value;
+    await fetch("/api/update/"+id,{
+        method:"PATCH",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({change:Number(change)})
+    });
+    loadProducts();
+}
+
+async function deleteProduct(id){
+    await fetch("/api/delete/"+id,{method:"DELETE"});
+    loadProducts();
+}
+
+loadProducts();
+</script>
