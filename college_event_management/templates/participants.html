@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="page-title">Participants — {{ event.name }}</h2>
+
+<div class="list">
+
+{% for p in participants %}
+    <div class="list-item">
+        <b>{{ p.student_name }}</b>
+        <span>{{ p.email }}</span>
+    </div>
+{% endfor %}
+
+</div>
+
+<a class="btn" href="/admin">Back</a>
+
+{% endblock %}

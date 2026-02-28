@@ -1,0 +1,165 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f1f5f9;
+}
+
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: 15px 40px;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-menu a {
+    margin: 0 12px;
+    text-decoration: none;
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+.nav-menu a:hover {
+    color: white;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user {
+    color: #cbd5e1;
+}
+
+.login-btn, .logout-btn {
+    background: #2563eb;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.logout-btn {
+    background: #ef4444;
+}
+
+/* MAIN */
+
+.main-container {
+    padding: 30px 50px;
+}
+
+/* CARDS */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 260px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.date {
+    color: gray;
+    font-size: 14px;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 15px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #1d4ed8;
+}
+
+.secondary {
+    background: #16a34a;
+}
+
+/* FORM */
+
+.form-card {
+    background: white;
+    padding: 30px;
+    width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+input {
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+}
+
+/* SUCCESS */
+
+.success-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* LIST */
+
+.list-item {
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}

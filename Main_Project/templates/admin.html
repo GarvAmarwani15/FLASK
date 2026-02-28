@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card p-3 bg-light shadow">
+            <h5>Total Events</h5>
+            <h3>{{ events|length }}</h3>
+        </div>
+    </div>
+</div>
+
+<a href="/add_event" class="btn btn-success mb-3">+ Add Event</a>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for e in events %}
+    <tr>
+        <td>{{ e.title }}</td>
+        <td>{{ e.date }}</td>
+        <td>
+            <a href="/edit_event/{{ e.id }}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="/delete_event/{{ e.id }}" class="btn btn-danger btn-sm">Delete</a>
+            <a href="/participants/{{ e.id }}" class="btn btn-info btn-sm">Participants</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

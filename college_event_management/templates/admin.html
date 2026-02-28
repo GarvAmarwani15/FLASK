@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="page-title">Admin Dashboard</h2>
+
+<a class="btn" href="/add_event">➕ Add Event</a>
+
+<div class="card-container">
+
+{% for event in events %}
+    <div class="card">
+        <h3>{{ event.name }}</h3>
+        <p>📅 {{ event.date }}</p>
+
+        <a class="btn secondary" href="/participants/{{ event.id }}">
+            View Participants
+        </a>
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

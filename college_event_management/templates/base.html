@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Event System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+
+    <div class="logo">
+        🎓 College Events
+    </div>
+
+    <div class="nav-menu">
+
+        {% if session.get('role') == 'admin' %}
+
+            <a href="{{ url_for('admin') }}">Dashboard</a>
+            <a href="{{ url_for('add_event') }}">Add Event</a>
+            <a href="{{ url_for('events') }}">View Site</a>
+
+        {% elif session.get('role') == 'student' %}
+
+            <a href="{{ url_for('events') }}">Events</a>
+
+        {% endif %}
+
+    </div>
+
+    <div class="nav-right">
+
+        {% if session.get('user') %}
+            <span class="user">
+                👤 {{ session.get('user') }}
+            </span>
+            <a class="logout-btn" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a class="login-btn" href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<div class="main-container">
+
+    {% block content %}{% endblock %}
+
+</div>
+
+</body>
+</html>

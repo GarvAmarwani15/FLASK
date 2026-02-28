@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Participant Dashboard</h2>
+
+<div class="row">
+
+    <!-- 🔹 ALL EVENTS -->
+    <div class="col-md-6">
+        <h4>All Events</h4>
+
+        {% for e in all_events %}
+        <div class="card p-3 mb-3 shadow-sm">
+            <h5>{{ e.title }}</h5>
+            <p>{{ e.description }}</p>
+            <p><b>Date:</b> {{ e.date }}</p>
+
+            {% if e.id in registered_event_ids %}
+                <button class="btn btn-secondary" disabled>Already Enrolled</button>
+            {% else %}
+                <a href="/enroll/{{ e.id }}" class="btn btn-primary">Enroll</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- 🔹 MY EVENTS -->
+    <div class="col-md-6">
+        <h4>My Enrolled Events</h4>
+
+        {% if registered_event_ids %}
+            <ul class="list-group">
+                {% for e in all_events %}
+                    {% if e.id in registered_event_ids %}
+                        <li class="list-group-item">
+                            <b>{{ e.title }}</b> - {{ e.date }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">No events enrolled yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

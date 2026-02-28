@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Available Events</h2>
+
+<div class="row">
+    {% for e in events %}
+    <div class="col-md-4">
+        <div class="card shadow p-3 mb-4">
+            <h4>{{ e.title }}</h4>
+            <p>{{ e.description }}</p>
+            <p><b>Date:</b> {{ e.date }}</p>
+
+            {% if session.get('role') == 'participant' %}
+                <a href="/enroll/{{ e.id }}" class="btn btn-primary">Enroll</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

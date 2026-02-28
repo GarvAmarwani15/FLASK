@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-card">
+
+<h2>Register for {{ event.name }}</h2>
+
+<form method="POST">
+
+    <label>Name</label>
+    <input type="text" name="name" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <button class="btn">Register</button>
+
+</form>
+
+</div>
+
+{% endblock %}

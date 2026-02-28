@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-3">Participants</h2>
+
+<table class="table table-bordered shadow">
+
+    <tr class="table-dark">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+
+    {% for p in participants %}
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.email }}</td>
+        <td>{{ p.phone }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<a href="/dashboard" class="btn btn-secondary">
+    Back
+</a>
+
+{% endblock %}
